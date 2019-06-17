@@ -16,24 +16,32 @@ def populate():
 
     python_pages = [
         {"title": "Official Python Tutorial",
+         "views": 1000,
          "url": "http://docs.python.org/2/tutorial/"},
         {"title": "How to Think like a Computer Scientist",
+         "views": 201,
         "url": "http://www.greenteapress.com/thinkpython/"},
         {"title": "Learn Python in 10 Minutes",
+         "views": 356,
         "url": "http://www.korokithakis.net/tutorials/python/"} ]
 
     django_pages = [
         {"title":"Official Django Tutorial",
+         "views": 798,
         "url":"https://docs.djangoproject.com/en/1.9/intro/tutorial01/"},
         {"title":"Django Rocks",
+         "views": 136,
         "url":"http://www.djangorocks.com/"},
         {"title":"How to Tango with Django",
+         "views": 208,
         "url":"http://www.tangowithdjango.com/"} ]
 
     other_pages = [
         {"title":"Bottle",
+         "views": 153,
         "url":"http://bottlepy.org/docs/dev/"},
         {"title":"Flask",
+         "views": 203,
         "url":"http://flask.pocoo.org"} ]
 
     cats = {"Python": {"pages": python_pages, "Views":128, "Likes":64},
@@ -53,7 +61,7 @@ def populate():
         c = add_cat(cat, cat_data)
 
         for p in cat_data["pages"]:
-            add_page(c, p["title"], p["url"])
+            add_page(c, p["title"], p["url"], p["views"])
 
     # Print out the categories we have added.
 
