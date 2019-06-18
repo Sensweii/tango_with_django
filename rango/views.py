@@ -12,7 +12,8 @@ def index(request):
     request.session.set_test_cookie()
     category_list = Category.objects.order_by('-likes')[:5]
     pages_list = Page.objects.order_by('-views')[:5]
-    context_dict = {'categories': category_list, 'pages': pages_list, }
+    context_dict = {'categories': category_list, 'pages': pages_list,
+                    'boldmessage': "Let's Tango!", }
 
     # Call the helper function to handle the cookies
     visitor_cookie_handler(request)
