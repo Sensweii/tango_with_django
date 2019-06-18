@@ -3,9 +3,15 @@
 
 
 {% block body_block %}
-    <h1>Rango says...</h1>
-    <div>
-        <h2>Hey there partner!</h2> <br />
+    <div class="jumbotron p-4">
+      <div class="container">
+        <h1 class="jumbotron-heading">Rango says...</h1>
+          <div>
+            <h2 class="h2"> Howdy {{ user.username }}! Hey there partner! </h2>
+                <h4 class="h4"><strong>{{ boldmessage }}</strong></h4>
+                <br />
+          </div>
+      </div>
     </div>
 
     <div>
@@ -36,4 +42,8 @@
     {% else %}
         <strong>There are no pages present.</strong>
     {% endif %}
+
+    <img src="{% static "images/rango.jpg" %}"
+    alt="A Chameleon Lizard called Rango" />
+    
 {% endblock %}

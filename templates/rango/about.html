@@ -2,20 +2,22 @@
 {% load staticfiles %}
 
 {% block body_block %}
-    <h1>Rango says...</h1>
-
-    <div>
-        This is the about page. <br />
-        <strong>{{newmessage}}</strong>
+    <div class="jumbotron p-4">
+      <div class="container">
+        <h1 class="jumbotron-heading">Rango says...</h1>
+          <div>
+            <h2 class="h2">This is the about page.</h2>
+              <h4 class="h4"><strong>{{newmessage}}</strong></h4>
+              <br />
+          </div>
+      </div>
     </div>
 
     <div>
         <p>You have seen this page for {{visits}} day(s).</p>
     </div>
 
-{% endblock %}
-
-{% block image_block %}
     <img src="{{MEDIA_URL}}cat.jpg"
     alt="Hooman Owner" />
+
 {% endblock %}
