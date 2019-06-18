@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse
+
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm
 
@@ -7,7 +9,7 @@ def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
     pages_list = Page.objects.order_by('-views')[:5]
     context_dict = {'categories': category_list, 'pages': pages_list}
-    return render(request, 'rango/index.html', context_dict)
+    return render(request, 'rango/index.html', context = context_dict)
 
 def about(request):
     context_dict = {'newmessage': "This tutorial has been put together by Hooman Alen!"}

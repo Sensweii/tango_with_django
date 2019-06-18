@@ -1,6 +1,37 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{ category.name }}
+{% endblock %}
+
+{% block body_block %}
+    {% if category %}
+        <h1>{{ category.name }}</h1>
+
+        {% if pages %}
+            <ul>
+            {% for page in pages %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+            {% endfor %}
+            </ul>
+
+        {% else %}
+            <strong>No pages currently in category.</strong>
+        {% endif %}
+        <a href="{% url 'rango:add_page' category.slug %}">Add a Page</a>
+
+    {% else %}
+        The specified category does not exist!
+
+    {% endif %}
+{% endblock %}
+
+
+<!-- The code that follows is the previous code before doing template inheritance
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Rango</title>
 </head>
@@ -28,3 +59,5 @@
       <a href="/rango/">Return to Index</a>
     </div>
 </body>
+
+-->

@@ -1,3 +1,30 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block body_block %}
+    <h1>Add a Page</h1>
+    <div>
+        <form id="page_form" method="post" action="{% url 'rango:add_page' category.slug %}">
+            {% csrf_token %}
+
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }} <br />
+                {{ field.help_text }}
+                {{ field }} <br/>
+            {% endfor %}
+            <br />
+            <input type="submit" name="submit" value="Create Page" />
+        </form>
+    </div>
+{% endblock %}
+
+
+<!-- The code that follows is the previous code before doing template inheritance
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,3 +52,5 @@
     </div>
   </body>
 </html>
+
+-->

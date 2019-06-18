@@ -1,11 +1,54 @@
-<!DOCTYPE html>
-
+{% extends 'rango/base.html' %}
 {%load staticfiles %}
 
+
+{% block body_block %}
+
+    <h1>Rango says...</h1>
+
+    <div>
+        <h2>Hey there partner!</h2> <br />
+    </div>
+
+    <div>
+        <strong>Most Liked Categories</strong>
+    {% if categories %}
+    <ul>
+        {% for category in categories %}
+            <li>
+              <a href="{% url 'rango:show_category' category.slug %}">{{category.name}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <strong>There are no categories present.</strong>
+    {% endif %}
+    </div>
+
+    <div>
+        <strong>Most Viewed Pages</strong>
+    {% if pages %}
+    <ul>
+        {% for page in pages %}
+            <li>
+              <a href="{{ page.url }}">{{ page.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <strong>There are no pages present.</strong>
+    {% endif %}
+{% endblock %}
+
+
+<!-- The code that follows is the previous code before doing template inheritance
+
+<!DOCTYPE html>
 <html>
 
   <head>
       <title>Rango</title>
+  </head>le>Rango</title>
   </head>
 
   <body>
@@ -13,7 +56,6 @@
 
       <div>
           <h2>Hey there partner!</h2> <br />
-          <strong>{{ boldmessage }}</strong>
       </div>
 
       <div>
@@ -47,13 +89,14 @@
       </div>
 
       <div>
-          <a href="/rango/about/">About</a><br />
+          <a href="{% url 'rango:about' %}">About</a><br />
           <a href="/rango/add_category">Add a New Category</a><br />
-          <!-- Image -->
+
           <img src="{% static "images/rango.jpg" %}"
               alt="A Chameleon Lizard called Rango" />
       </div>
 
   </body>
-
 </html>
+
+-->
