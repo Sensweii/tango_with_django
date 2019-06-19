@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include, reverse
+from django.urls import path, include
+from django.urls import reverse
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,14 +27,12 @@ from registration.backends.simple.views import RegistrationView
 #if successful at logging
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
-        return reverse('index')
+        return reverse('rango:index')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index,name='index'),
+    path('', views.index,name='index'),
     path('rango/', include('rango.urls')),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('accounts/register/',
-            MyRegistrationView.as_view(),
-            name='registration_register'),
+    path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
