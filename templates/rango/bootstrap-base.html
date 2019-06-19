@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 {% load rango_template_tags %}
-
 <html lang="en">
     <head>
     <meta charset="utf-8">
@@ -34,7 +33,7 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'rango:index' %}">Home</a></li>
                         <li class="nav-item "><a class="nav-link" href="{% url 'rango:about' %}">About</a></li>
                         {% if user.is_authenticated %}
-
+                        <li class="nav-item "><a class="nav-link" href="{% url 'rango:restricted' %}">Restricted</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'rango:add_category' %}">Add Category</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'auth_logout' %}?next=/rango/">Logout</a></li>
                         {% else %}
@@ -49,12 +48,10 @@
         <div class="container-fluid">
             <div class="row">
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                    <div  class="sidebar-sticky">
-                    <div id="cats">
+                    <div class="sidebar-sticky">
                     {% block sidebar_block %}
                         {% get_category_list category %}
                     {% endblock %}
-                    </div>
                     </div>
                 </nav>
 
