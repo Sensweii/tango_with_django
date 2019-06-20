@@ -36,7 +36,7 @@ def run_query(search_terms):
     try:
         response = requests.get(search_url, headers=headers, params=params)
     except:
-        raise ConnectionError('No internet access. Check your network.')
+        raise ConnectionError('No access. Check your network.')
 
     response.raise_for_status()
     search_results = response.json()

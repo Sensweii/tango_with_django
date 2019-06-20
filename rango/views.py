@@ -53,6 +53,18 @@ def show_category(request, category_name_slug):
         context_dict['category'] = None
         context_dict['pages'] = None
 
+    # Code here to handle POST request
+    context_dict['query'] = category.name
+
+    result_list = []
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+        if query:
+            # Run Bing search, append result to context_dict
+            result_list = run_query(query)
+            context_dict['query'] = query
+            context_dict['result_list'] = result_list
+
     return render(request, 'rango/category.html', context_dict)
 
 
@@ -124,19 +136,6 @@ def get_server_side_cookie(request, cookie, default_val = None):
     if not val:
         val = default_val
     return val
-
-
-def search(request):
-    result_list = []
-
-    if request.method == 'POST':
-        query = request.POST['query'].strip()
-        if query:
-            # Run our Bing function to get the results list!
-            result_list = run_query(query)
-    else:
-        query = ""
-    return render(request, 'rango/search.html', {'result_list': result_list, 'query':query})
 
 
 def goto_url(request):
