@@ -1,5 +1,7 @@
 from django import forms
 from rango.models import Page, Category
+from django.contrib.auth.models import User
+from rango.models import UserProfile
 
 # Use Django's ModelForm as base for our customized form
 class CategoryForm(forms.ModelForm):
@@ -35,3 +37,11 @@ class PageForm(forms.ModelForm):
             cleaned_data['url'] = url
 
             return cleaned_data
+
+class UserProfileForm(forms.ModelForm):
+    website = forms.URLField(required=False)
+    picture = forms.ImageField(required=False)
+
+    class Meta:
+        model = UserProfile
+        exclude = ('user',)
