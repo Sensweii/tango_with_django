@@ -44,12 +44,9 @@
 
         <a href="{% url 'rango:add_page' category.slug %}">Add a Page</a>
         <br />
-
     {% else %}
         The specified category does not exist!
-
     {% endif %}
-
 
 
     {% if user.is_authenticated %}

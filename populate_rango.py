@@ -44,9 +44,23 @@ def populate():
          "views": 203,
         "url":"http://flask.pocoo.org"} ]
 
+    pascal_pages = []
+    perl_pages = []
+    php_pages = []
+    prolog_pages = []
+    postscript_pages = []
+    programming_pages = []
+
     cats = {"Python": {"pages": python_pages, "Views":128, "Likes":64},
             "Django": {"pages": django_pages, "Views":64, "Likes":32},
-            "Other Frameworks": {"pages": other_pages, "Views":32, "Likes":16} }
+            "Other Frameworks": {"pages": other_pages, "Views":32, "Likes":16},
+            "Pascal": {"pages": pascal_pages, "Views":0, "Likes":0},
+            "Perl": {"pages": perl_pages, "Views":0, "Likes":0},
+            "PHP": {"pages": php_pages, "Views":0, "Likes":0},
+            "Prolog": {"pages": prolog_pages, "Views":0, "Likes":0},
+            "PostScript": {"pages": postscript_pages, "Views":0, "Likes":0},
+            "Programming": {"pages": programming_pages, "Views":0, "Likes":0},
+            }
 
     # If you want to add more catergories or pages,
     # add them to the dictionaries above.
