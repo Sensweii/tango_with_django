@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.urls import reverse
 
 from django.views import View
 from django.utils.decorators import method_decorator
@@ -31,6 +30,11 @@ def index(request):
     # Return response back to the user, updating any cookies that need changed
     return response
 
+class AboutView(View):
+    def get(self, request):
+        # view logic
+        visitor_cookie_handler(request)
+        return render(request, 'rango/about.html', context={'visits':request.session['visits']})
 
 def about(request):
     if request.session.test_cookie_worked():
@@ -71,6 +75,23 @@ def show_category(request, category_name_slug):
 
     return render(request, 'rango/category.html', context_dict)
 
+class AddCategoryView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        form = CategoryForm()
+        return render(request, 'rango/add_category.html', {'form':form})
+
+    @method_decorator(login_required)
+    def post(self, request):
+        form = CategoryForm
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+        else:
+            print(form.errors)
+        return render(request, 'rango/add_category.html', {'form':form})
+
 
 def add_category(request):
     form = CategoryForm()
@@ -85,6 +106,20 @@ def add_category(request):
             print(form.errors)
 
     return render(request, 'rango/add_category.html', {'form': form})
+
+
+@login_required
+def like_category(request):
+    cat_id = None
+    if request.method == 'GET':
+        cat_id = request.GET['category_id']
+        likes = 0
+    if cat_id:
+        cat = Category.objects.get(id=int(cat_id))
+        if cat:
+            likes = cat.likes + 1
+            cat.save()
+    return HttpResponse(likes)
 
 
 def add_page(request, category_name_slug):
@@ -171,37 +206,16 @@ def register_profile(request):
             user_profile.save()
 
             return redirect('index')
-
         else:
             print(form.errors)
 
     context_dict = {'form':form}
+
     return render(request, 'rango/profile_registration.html', context_dict)
 
-class AboutView(View):
-    def get(self, request):
-        # view logic
-        visitor_cookie_handler(request)
-        return render(request, 'rango/about.html', context={'visits':request.session['visits']})
-
-class AddCategoryView(View):
-    @method_decorator(login_required)
-    def get(self, request):
-        form = CategoryForm()
-        return render(request, 'rango/add_category.html', {'form':form})
-
-    @method_decorator(login_required)
-    def post(self, request):
-        form = CategoryForm
-        form = CategoryForm(request.POST)
-        if form.is_valid():
-            form.save(commit=True)
-            return index(request)
-        else:
-            print(form.errors)
-        return render(request, 'rango/add_category.html', {'form':form})
 
 class ProfileView(View):
+
     def get_user_details(self, username):
         try:
             user = User.objects.get(username=username)
@@ -209,18 +223,17 @@ class ProfileView(View):
             return redirect('index')
 
         userprofile = UserProfile.objects.get_or_create(user=user)[0]
-        form = UserProfileForm({'website': userprofile.website,
-                                'picture': userprofile.picture})
+        form = UserProfileForm({'website': userprofile.website, 'picture': userprofile.picture})
         return (user, userprofile, form)
 
     @method_decorator(login_required)
-    def get(self, request, username):
+    def get(self, request,  username):
         (user, userprofile, form) = self.get_user_details(username)
         return render(request, 'rango/profile.html',
-                {'userprofile': userprofile, 'selecteduser': user, 'form': form})
+            {'userprofile': userprofile, 'selecteduser': user, 'form': form})
 
     @method_decorator(login_required)
-    def post(self, request, username):
+    def post(self, request,  username):
         (user, userprofile, form) = self.get_user_details(username)
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
         if form.is_valid():
@@ -230,3 +243,10 @@ class ProfileView(View):
             print(form.errors)
         return render(request, 'rango/profile.html',
             {'userprofile': userprofile, 'selecteduser': user, 'form': form})
+
+@login_required
+def list_profiles(request):
+    userprofile_list = UserProfile.objects.all()
+
+    return render(request, 'rango/list_profiles.html',
+                    {'userprofile_list' : userprofile_list})

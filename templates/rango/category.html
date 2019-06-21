@@ -13,6 +13,18 @@
           </div>
         </div>
 
+        <div>
+          <strong id="like_count">{{ category.likes }}</strong> people like this category.
+          {% if user.is_authenticated %}
+            <button id="likes" data-catid="{{category.id}}"
+                    class="btn btn-primary btn-sm" type="button">
+            <span data-feather="thumbs-up"></span>
+                Like
+            </button>
+          {% endif %}
+        </div>
+        <br />
+
         {% if pages %}
             <ul>
             {% for page in pages %}
@@ -29,6 +41,7 @@
         {% else %}
             <strong>No pages currently in category.</strong>
         {% endif %}
+
         <a href="{% url 'rango:add_page' category.slug %}">Add a Page</a>
         <br />
 
@@ -36,6 +49,8 @@
         The specified category does not exist!
 
     {% endif %}
+
+
 
     {% if user.is_authenticated %}
       <div class="container p-4">

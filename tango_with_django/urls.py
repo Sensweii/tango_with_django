@@ -13,13 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-
 from django.urls import reverse
 from django.urls import path, include
 
-from django.contrib import admin
 from rango import views
 from registration.backends.simple.views import RegistrationView
 
@@ -35,5 +34,5 @@ urlpatterns = [
     path('', views.index,name='index'),
     path('rango/', include('rango.urls')),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
+    path('accounts/register_new/', MyRegistrationView.as_view(), name='registration_register'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

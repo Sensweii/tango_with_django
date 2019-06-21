@@ -12,4 +12,6 @@ urlpatterns = [
     path('goto/', views.goto_url, name='goto'),
     path('register_profile/', views.register_profile, name='register_profile'),
     path('profile/<username>', ProfileView.as_view(), name='profile'),
+    path('profiles/', views.list_profiles, name='list_profiles'),
+    path('like/', views.like_category, name='like_category'),
 ]

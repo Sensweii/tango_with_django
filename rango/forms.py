@@ -1,7 +1,5 @@
 from django import forms
-from rango.models import Page, Category
-from django.contrib.auth.models import User
-from rango.models import UserProfile
+from rango.models import Page, Category, UserProfile
 
 # Use Django's ModelForm as base for our customized form
 class CategoryForm(forms.ModelForm):
