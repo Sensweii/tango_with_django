@@ -75,6 +75,11 @@
                   <div class="list-group-item">
                       <h4 class="list-group-item-heading">
                           <a href="{{ result.link }}">{{ result.title|safe|escape }}</a>
+                          {% if user.is_authenticated %}
+                          <button data-catid="{{category.id}}" data-title="{{ result.title }}"
+                                  data-url="{{ result.link }}"
+                                  class="rango-add btn btn-info btn-sm" type="button">Add Page</button>
+                          {% endif %}
                       </h4>
                       <p class="list-group-item-text">{{ result.summary|safe|escape }}</p>
                   </div>
