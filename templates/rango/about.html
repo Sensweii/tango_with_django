@@ -1,13 +1,18 @@
 {% extends 'rango/base.html' %}
 {% load staticfiles %}
 
+{% block title_block %}
+  About Page
+{% endblock %}
+
 {% block body_block %}
     <div class="jumbotron p-4">
       <div class="container">
         <h1 class="jumbotron-heading">Rango says...</h1>
           <div>
-            <h2 class="h2">This is the about page.</h2>
-              <h4 class="h4"><strong>{{newmessage}}</strong></h4>
+            <h2 class="h2">Here is the about page.</h2>
+              <h4 class="h4"><strong>This tutorial has been put together by
+                                    Hooman Alen!</strong></h4>
               <br />
           </div>
       </div>
@@ -21,8 +26,8 @@
     alt="Hooman Owner" />
 
     <br />
-    
-    <!-- <button class="btn btn-primary"
+
+    <button class="btn btn-primary"
         onClick="alert('You clicked the button using inline JavaScript.');">
         Click Me - I run JavaScript
     </button>
@@ -32,8 +37,8 @@
     </button>
 
     <br />
-    <p>This text is for a JQuery Example</p>
+    <!-- <p>This text is for a JQuery Example</p> -->
     <br />
-    <div id="msg">Hello - I'm here for a JQuery Example too</div> -->
+    <div id="msg">Hello - I'm here for a JQuery Example too</div>
 
 {% endblock %}

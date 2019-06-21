@@ -16,13 +16,13 @@ def populate():
 
     python_pages = [
         {"title": "Official Python Tutorial",
-         "views": 1000,
+         "views": 864,
          "url": "http://docs.python.org/2/tutorial/"},
         {"title": "How to Think like a Computer Scientist",
-         "views": 201,
+         "views": 205,
         "url": "http://www.greenteapress.com/thinkpython/"},
         {"title": "Learn Python in 10 Minutes",
-         "views": 356,
+         "views": 300,
         "url": "http://www.korokithakis.net/tutorials/python/"} ]
 
     django_pages = [
@@ -33,7 +33,7 @@ def populate():
          "views": 136,
         "url":"http://www.djangorocks.com/"},
         {"title":"How to Tango with Django",
-         "views": 208,
+         "views": 192,
         "url":"http://www.tangowithdjango.com/"} ]
 
     other_pages = [

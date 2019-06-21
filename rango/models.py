@@ -10,6 +10,8 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
+        if self.views < 1:
+            self.views = 1
         super(Category, self).save(*args, **kwargs)
 
     class Meta:

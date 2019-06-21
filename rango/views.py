@@ -40,10 +40,9 @@ def about(request):
     if request.session.test_cookie_worked():
         print('TEST COOKIE WORKED!')
         request.session.delete_test_cookie
-    context_dict = {'newmessage': "This tutorial has been put together by Hooman Alen!"}
 
     visitor_cookie_handler(request)
-    context_dict['visits'] = request.session['visits']
+    context_dict = {'visits': request.session['visits']}
 
     return render(request, 'rango/about.html', context_dict)
 
