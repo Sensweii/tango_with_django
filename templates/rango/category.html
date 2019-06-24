@@ -34,6 +34,10 @@
                     {% elif page.views == 1 %}
                         ({{ page.views }} view)
                     {% endif %}
+                    <br/>
+                    <p>Last Visit: {{ page.last_visit }}
+                      
+                    </p>
                 </li>
             {% endfor %}
             </ul>

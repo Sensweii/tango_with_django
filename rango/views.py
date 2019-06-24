@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 
 from django.views import View
 from django.utils.decorators import method_decorator
+from django.utils.timezone import now
 
 from rango.bing_search import run_query, read_bing_key
 from rango.forms import CategoryForm, PageForm, UserProfileForm
@@ -163,6 +164,8 @@ def add_page(request, category_name_slug):
                 page = form.save(commit = False)
                 page.category = category
                 page.views = 0
+                page.first_visit = now()
+                page.last_visit = now()
                 page.save()
                 return show_category(request, category_name_slug)
         else:
@@ -177,15 +180,21 @@ def auto_add_page(request):
     cat_id = None
     url = None
     title = None
+    first_visit = now()
+    last_visit = now()
     context_dict = {}
     if request.method == 'GET':
         cat_id = request.GET['category_id']
         url = request.GET['url']
         title = request.GET['title']
+        first_visit = request.GET['first_visit']
+        last_visit = request.GET['last_visit']
         if cat_id:
             category = Category.objects.get(id=int(cat_id))
             p = Page.objects.get_or_create(category=category,
-                                            title=title, url=url)
+                                            title=title, url=url,
+                                            first_visit = now(),
+                                            last_visit = now())
             pages = Page.objects.filter(category=category).order_by('-views')
             # Adds our results list to the template context under name pages.
             context_dict['pages'] = pages
@@ -235,6 +244,7 @@ def goto_url(request):
             try:
                 page = Page.objects.get(id = page_id)
                 page.views += 1
+                page.last_visit = now()
                 page.save()
                 url = page.url
             except:

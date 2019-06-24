@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.timezone import now
 from rango.models import Page, Category, UserProfile
 
 # Use Django's ModelForm as base for our customized form
@@ -20,6 +21,8 @@ class PageForm(forms.ModelForm):
     url = forms.URLField(max_length = 200,
                             help_text = "Please enter the URL of the page.")
     views = forms.IntegerField(widget = forms.HiddenInput(), initial = 0)
+    first_visit = forms.DateTimeField(widget = forms.HiddenInput(), initial = now())
+    last_visit = forms.DateTimeField(widget = forms.HiddenInput(), initial = now())
 
     class Meta:
         model = Page
