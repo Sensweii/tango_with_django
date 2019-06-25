@@ -27,7 +27,7 @@ SECRET_KEY = 'i53%w@-azfr$!h@$gpi3syth6mtx!vu$#6u%v^q78anj979ylb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['sensweii.pythonanywhere.com']
+ALLOWED_HOSTS = ['https://sensweii.pythonanywhere.com']
 
 
 # Application definition
