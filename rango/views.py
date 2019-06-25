@@ -25,17 +25,26 @@ def index(request):
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
 
+    try:
+        img = request.user.userprofile.picture.url
+    except:
+        img = None
+
+    context_dict['picture'] = img
+
     # Obtain our Response object early so we can add cookie information.
     response = render(request, 'rango/index.html', context_dict)
 
     # Return response back to the user, updating any cookies that need changed
     return response
 
+
 class AboutView(View):
     def get(self, request):
         # view logic
         visitor_cookie_handler(request)
         return render(request, 'rango/about.html', context={'visits':request.session['visits']})
+
 
 def about(request):
     if request.session.test_cookie_worked():
@@ -307,3 +316,6 @@ def list_profiles(request):
 
     return render(request, 'rango/list_profiles.html',
                     {'userprofile_list' : userprofile_list})
+
+
+# def get_pic(request, User):

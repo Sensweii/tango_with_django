@@ -25,9 +25,9 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'i53%w@-azfr$!h@$gpi3syth6mtx!vu$#6u%v^q78anj979ylb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://sensweii.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -104,6 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+AUTH_PROFILE_MODULE = "rango.UserProfile"
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

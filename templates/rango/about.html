@@ -6,39 +6,67 @@
 {% endblock %}
 
 {% block body_block %}
-    <div class="jumbotron p-4">
-      <div class="container">
-        <h1 class="jumbotron-heading">Rango says...</h1>
-          <div>
-            <h2 class="h2">Here is the about page.</h2>
-              <h4 class="h4"><strong>This tutorial has been put together by
-                                    Hooman Alen!</strong></h4>
-              <br />
+    <div class="container-fluid">
+    <div class="row justify-content-center">
+    <div class="media">
+          <div class="d-none d-lg-block">
+          {% if picture %}
+              <img class="img-fluid align-self-center mr-3"
+                  src="{{ picture }}"
+                  width="224"
+                  height="224"
+                  alt="{{selecteduser.username}}" />
+          {% else %}
+              <img class="img-fluid align-self-center mr-3"
+                  width="190"
+                  src="{% static "images/morgan.jpeg" %}" />
+          {% endif %}
           </div>
+      <div class="media-body">
+          <h1 class="mt-4">Rango says...</h1>
+          <h4 class="h4">Here is the About Page.</h4>
+          <h4 class="h4"><strong>This tutorial has been put together by
+                                Hooman Alen!</strong></h4>
       </div>
+          <div class="d-none d-md-block">
+          <img class="img-fluid align-self-center ml-3"
+                height="224"
+                width="224"
+                src="{% static "images/rango.jpg" %}" alt="Rango" />
+          </div>
+    </div>
+    </div>
     </div>
 
+    <div class="container-fluid mt-3">
+    <div class="row justify-content-center">
+        <img src="{{MEDIA_URL}}cat.gif" alt="Hooman Owner" />
+    </div>
+    </div>
+
+    <div class="container-fluid mt-3 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-6 align-items-center">
+          <button class="btn btn-primary"
+              onClick="alert('You clicked the button using inline JavaScript.');">
+              Click Me - I run JavaScript
+          </button>
+        </div>
+        <div class="col-6 align-items-center">
+          <button class="btn btn-primary" id="about-btn">
+              Click Me - I'm JavaScript on Ice
+          </button>
+        </div>
+    </div>
+    </div>
+
+    <!-- <p>This text is for a JQuery Example</p> -->
+
+    <div id="msg">Hello - I'm here for a JQuery Example too</div>
+    <br>
     <div>
         <p>You have seen this page for {{visits}} day(s).</p>
     </div>
 
-    <img src="{{MEDIA_URL}}cat.jpg"
-    alt="Hooman Owner" />
-
-    <br />
-
-    <button class="btn btn-primary"
-        onClick="alert('You clicked the button using inline JavaScript.');">
-        Click Me - I run JavaScript
-    </button>
-
-    <button class="btn btn-primary" id="about-btn">
-        Click Me - I'm JavaScript on Ice
-    </button>
-
-    <br />
-    <!-- <p>This text is for a JQuery Example</p> -->
-    <br />
-    <div id="msg">Hello - I'm here for a JQuery Example too</div>
-
+    <hr>
 {% endblock %}
