@@ -47,9 +47,7 @@
             <ul class="list-group">
                 {% for category in categories %}
                     <li class="list-group-item">
-                      <button class"btn-seconday">
                         <a href="{% url 'rango:show_category' category.slug %}">{{category.name}}</a>
-                      </button>
                     </li>
                 {% endfor %}
             </ul>
@@ -70,9 +68,7 @@
             <ul class="list-group">
                 {% for page in pages %}
                     <li class="list-group-item">
-                        <button class"btn-seconday" id="pvisit">
-                          <a href="{{ page.url }}">{{ page.title }}</a>
-                        </button>
+                          <a href="{% url 'rango:goto' %}?page_id={{page.id}}">{{ page.title }}</a>
                     </li>
                 {% endfor %}
             </ul>
