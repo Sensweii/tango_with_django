@@ -126,6 +126,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR,]
+STATIC_URL = '/home/Sensweii/tango_with_django/static/'
 
 print(__file__)
 print(os.path.dirname(__file__))
