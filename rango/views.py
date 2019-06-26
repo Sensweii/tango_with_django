@@ -318,4 +318,6 @@ def list_profiles(request):
                     {'userprofile_list' : userprofile_list})
 
 
-# def get_pic(request, User):
+def terms(request):
+    user = request.user.username
+    return render(request, 'rango/terms.html', context={'user':user})

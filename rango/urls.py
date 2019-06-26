@@ -15,5 +15,6 @@ urlpatterns = [
     path('profiles/', views.list_profiles, name='list_profiles'),
     path('like/', views.like_category, name='like_category'),
     path('suggest/', views.suggest_category, name='suggest_category'),
-    path('add/', views.auto_add_page, name='auto_add_page')
+    path('add/', views.auto_add_page, name='auto_add_page'),
+    path('terms/', views.terms, name='terms_page'),
 ]
