@@ -196,14 +196,12 @@ def auto_add_page(request):
         cat_id = request.GET['category_id']
         url = request.GET['url']
         title = request.GET['title']
-        first_visit = request.GET['first_visit']
-        last_visit = request.GET['last_visit']
         if cat_id:
             category = Category.objects.get(id=int(cat_id))
             p = Page.objects.get_or_create(category=category,
                                             title=title, url=url,
-                                            first_visit = now(),
-                                            last_visit = now())
+                                            first_visit = first_visit,
+                                            last_visit = last_visit)
             pages = Page.objects.filter(category=category).order_by('-views')
             # Adds our results list to the template context under name pages.
             context_dict['pages'] = pages
