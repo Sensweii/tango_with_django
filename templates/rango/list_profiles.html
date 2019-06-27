@@ -4,10 +4,10 @@
 {% block title %}User Profiles{% endblock %}
 
 {% block body_block %}
-  <div class="jumbotron p-4">
-    <div class="container">
+  <div class="jumbotron-heading p-4 mb-3">
+
       <h1 class="jumbotron-heading">User Profiles</h1>
-    </div>
+
   </div>
 
   <div class="container">
@@ -25,12 +25,12 @@
                         {% else %}
                           <img width="64" height="64" src="{% static "images/blank.png" %}"/>
                         {% endif %}
-                          <div class="list-group-item">
+
                           <h4 class="list-group-item-heading">
                           <a href="{% url 'rango:profile' listuser.user.username %}">
                                   {{ listuser.user.username }}</a>
                           </h4>
-                          </div>
+                          
                   {% else %}
                         {% if listuser.website == 'http://vee.com' %}
                         {% else %}

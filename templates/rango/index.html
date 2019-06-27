@@ -3,20 +3,22 @@
 
 
 {% block body_block %}
+<div class="jumbotron big-banner">
+
     <div class="container-fluid">
     <div class="row justify-content-center">
     <div class="media">
           <div class="d-none d-lg-block">
           {% if picture %}
-              <img class="img-fluid align-self-center mr-3"
+              <img class="img-fluid align-self-center mr-3 rounded-circle"
                   src="{{ picture }}"
                   width="224"
                   height="224"
-                  alt="{{selecteduser.username}}" />
+                  alt="{{selecteduser.username}}"/>
           {% else %}
-              <img class="img-fluid align-self-center mr-3"
+              <img class="img-fluid align-self-center mr-3 rounded-circle"
                   width="190"
-                  src="{% static "images/morgan.jpeg" %}" />
+                  src="{% static "images/morgan.jpeg" %}"/>
           {% endif %}
           </div>
       <div class="media-body">
@@ -25,7 +27,7 @@
           <h4 class="h4">{{ boldmessage }}</h4>
       </div>
           <div class="d-none d-md-block">
-          <img class="img-fluid align-self-center ml-3"
+          <img class="img-fluid align-self-center ml-3 rounded-circle"
                 height="224"
                 width="224"
                 src="{% static "images/rango.jpg" %}" alt="Rango" />
@@ -34,13 +36,14 @@
     </div>
     </div>
 
+</div>
 
     <div class="container">
     <div class="row">
 
     <div class="col-md-6 col-lg-4 mt-3">
     <div class="card mb-6">
-    <div class="card-body bg-info">
+    <div class="card-body">
             <h3>Most Liked Categories</h3>
       <p class="card-text">
             {% if categories %}
@@ -61,7 +64,7 @@
 
     <div class="col-md-6 col-lg-4 mt-3">
     <div class="card mb-6">
-    <div class="card-body bg-info">
+    <div class="card-body">
             <h3>Most Viewed Pages</h3>
       <p class="card-text">
             {% if pages %}
